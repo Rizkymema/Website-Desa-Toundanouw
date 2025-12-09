@@ -12,10 +12,6 @@ export type ProfilDesa = {
   deskripsi: string | null;
   visi: string | null;
   misi: string | null;
-  sejarah: string | null;
-  geografis: string | null;
-  statistik_penduduk: number | null;
-  luas_wilayah: string | null;
   alamat: string | null;
   telepon: string | null;
   email: string | null;

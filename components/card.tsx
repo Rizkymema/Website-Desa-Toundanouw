@@ -1,4 +1,86 @@
-import { ReactNode, CSSProperties } from "react";
+"use client";
+
+import { useState, ReactNode, CSSProperties } from "react";
+
+interface AuthFormProps {
+  onSubmitAction?: (email: string, password: string) => void | Promise<void>;
+  isLoading?: boolean;
+  type?: "login" | "register";
+}
+
+export function AuthForm({ onSubmitAction, isLoading = false, type = "login" }: AuthFormProps) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (onSubmitAction) {
+      await onSubmitAction(email, password);
+    }
+  };
+
+  return (
+    <Card variant="elevated" className="max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-6">
+          {type === "login" ? "Masuk" : "Daftar"}
+        </h2>
+
+        {/* Email Input */}
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="nama@email.com"
+            required
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+          />
+        </div>
+
+        {/* Password Input */}
+        <div>
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              required
+              minLength={8}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 pr-12"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </button>
+          </div>
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full py-3 px-4 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl shadow-lg shadow-orange-200/50 dark:shadow-none transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isLoading ? "Memproses..." : type === "login" ? "Masuk" : "Daftar"}
+        </button>
+      </form>
+    </Card>
+  );
+}
 
 type CardVariant = "default" | "elevated" | "glass" | "gradient" | "highlight";
 

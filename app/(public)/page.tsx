@@ -54,12 +54,11 @@ type GaleriItem = {
 };
 
 type ProfilDesa = {
-  nama_desa: string;
+  nama_desa: string | null;
   alamat: string | null;
   telepon: string | null;
   email: string | null;
   luas_wilayah: string | null;
-  sejarah: string | null;
 };
 
 type SiteSettings = {
@@ -144,7 +143,7 @@ async function getFeaturedGaleri(limit: number = 8): Promise<GaleriItem[]> {
 async function getProfilDesa(): Promise<ProfilDesa | null> {
   const { data, error } = await supabaseAdmin
     .from('profil_desa')
-    .select('nama_desa, alamat, telepon, email, luas_wilayah, sejarah')
+    .select('nama_desa, alamat, telepon, email, luas_wilayah')
     .single();
 
   if (error) {
@@ -296,14 +295,14 @@ export default async function HomePage() {
       </section>
 
       {/* Profil Singkat Desa - Premium Design */}
-      <section className="bg-gradient-to-b from-white via-white to-cream dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 py-16 sm:py-20 md:py-28 relative overflow-hidden">
+      <section className="bg-gradient-to-b from-white via-white to-cream dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 py-12 sm:py-14 md:py-18 relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-100/50 dark:bg-orange-900/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cream dark:bg-orange-900/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
         
         <Container className="relative z-10">
-          <div className="text-center mb-10 sm:mb-16">
-            <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 bg-gradient-to-r from-orange-100 to-amber-100 dark:from-orange-900/30 dark:to-amber-900/30 rounded-full mb-4 sm:mb-5">
+          <div className="text-center mb-8 sm:mb-10">
+            <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 bg-gradient-to-r from-orange-100 to-amber-100 dark:from-orange-900/30 dark:to-amber-900/30 rounded-full mb-3 sm:mb-4">
               <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600 dark:text-orange-400" />
               <span className="text-xs sm:text-sm font-semibold text-orange-700 dark:text-orange-400 tracking-wide">
                 Tentang Kami
@@ -370,7 +369,7 @@ export default async function HomePage() {
             ))}
           </div>
 
-          <div className="text-center mt-10 sm:mt-14">
+          <div className="text-center mt-8 sm:mt-10">
             <Button href="/profil" variant="outline" size="lg" className="group px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base hover:bg-orange-50 hover:border-orange-300 dark:hover:bg-orange-900/20">
               Selengkapnya Tentang Desa
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
@@ -379,92 +378,50 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* Sejarah Desa - Premium Design */}
-      {profil?.sejarah && (
-        <section className="bg-white dark:bg-slate-900 py-16 sm:py-20 md:py-28 relative overflow-hidden">
-          {/* Background decoration */}
-          <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-orange-50/50 dark:bg-orange-900/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2" />
-          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-amber-50/50 dark:bg-amber-900/5 rounded-full blur-3xl translate-y-1/2 translate-x-1/2" />
-          
-          <Container className="relative z-10">
-            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-              {/* Left - Image/Illustration */}
-              <div className="relative order-2 lg:order-1">
-                <div className="relative aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-orange-200/50 dark:shadow-none border border-orange-100 dark:border-slate-700">
-                  {/* Gambar Sejarah Desa */}
-                  <Image
-                    src="/sejarah-desa.png"
-                    alt="Sejarah Desa Toundanouw"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                </div>
-                
-                {/* Floating stats card - Positioned outside image */}
-                <div className="absolute -bottom-6 right-4 sm:right-8 lg:-right-4 bg-white dark:bg-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-slate-700 z-10">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/30 dark:to-amber-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Users className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600 dark:text-orange-400" />
-                    </div>
-                    <div>
-                      <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
-                        {totalPenduduk > 0 ? totalPenduduk.toLocaleString('id-ID') : '1.500'}+
-                      </p>
-                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Jiwa Penduduk</p>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Decorative elements */}
-                <div className="absolute -top-4 -left-4 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-orange-200 to-amber-200 dark:from-orange-800/30 dark:to-amber-800/30 rounded-2xl -z-10" />
-              </div>
+      {/* Menu Jelajahi - Explore Features */}
+      <section className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-800 dark:to-slate-900 py-10 sm:py-12 md:py-14 relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 w-[800px] h-[400px] bg-orange-100/30 dark:bg-orange-900/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        
+        <Container className="relative z-10">
+          <div className="text-center mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
+              Jelajahi Desa
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
+              Temukan berbagai informasi lengkap tentang desa kami
+            </p>
+          </div>
 
-              {/* Right - Content */}
-              <div className="order-1 lg:order-2">
-                <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 bg-gradient-to-r from-orange-100 to-amber-100 dark:from-orange-900/30 dark:to-amber-900/30 rounded-full mb-4 sm:mb-6">
-                  <History className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-600 dark:text-orange-400" />
-                  <span className="text-xs sm:text-sm font-semibold text-orange-700 dark:text-orange-400 tracking-wide">
-                    Sejarah Desa
-                  </span>
-                </div>
-                
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 tracking-tight">
-                  Mengenal Sejarah{' '}
-                  <span className="text-gradient-primary">
-                    {profil?.nama_desa || 'Toundanouw'}
-                  </span>
-                </h2>
-                
-                <div className="prose prose-lg dark:prose-invert max-w-none">
-                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base sm:text-lg">
-                    {profil.sejarah.length > 500 
-                      ? `${profil.sejarah.substring(0, 500)}...` 
-                      : profil.sejarah
-                    }
-                  </p>
-                </div>
-                
-                <div className="mt-6 sm:mt-8">
-                  <Button href="/jelajahi/sejarah" size="lg" className="group bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/30 px-5 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base">
-                    <History className="w-4 h-4 sm:w-5 sm:h-5" />
-                    Lihat Sejarah Lengkap
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </Container>
-        </section>
-      )}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+            {[
+              { label: 'Profil', href: '/profil', icon: '📋' },
+              { label: 'Sejarah', href: '/jelajahi/sejarah', icon: '📚' },
+              { label: 'Penduduk', href: '/jelajahi/penduduk', icon: '👥' },
+              { label: 'Potensi', href: '/potensi', icon: '💼' },
+              { label: 'Galeri', href: '/galeri', icon: '🖼️' }
+            ].map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="group flex flex-col items-center gap-2 p-4 sm:p-5 bg-white dark:bg-slate-800 rounded-xl sm:rounded-2xl shadow-md hover:shadow-lg dark:shadow-none transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-slate-700"
+              >
+                <span className="text-3xl sm:text-4xl">{item.icon}</span>
+                <span className="font-semibold text-gray-900 dark:text-white text-center text-xs sm:text-sm group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                  {item.label}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </Container>
+      </section>
 
       {/* Berita Terbaru - Premium Design */}
-      <section className="bg-cream dark:bg-slate-800/50 py-16 sm:py-20 md:py-28 relative overflow-hidden">
+      <section className="bg-cream dark:bg-slate-800/50 py-12 sm:py-14 md:py-18 relative overflow-hidden">
         {/* Decorative background */}
         <div className="absolute inset-0 hero-pattern opacity-30" />
         
         <Container className="relative z-10">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-8 sm:mb-14 gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-6 sm:mb-10 gap-4">
             <div>
               <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-full mb-3 sm:mb-5">
                 <Newspaper className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 dark:text-blue-400" />
@@ -570,13 +527,13 @@ export default async function HomePage() {
       </section>
 
       {/* Layanan E-Surat - Premium Design */}
-      <section className="bg-white dark:bg-slate-900 py-16 sm:py-20 md:py-28 relative overflow-hidden">
+      <section className="bg-white dark:bg-slate-900 py-12 sm:py-14 md:py-18 relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-purple-100/50 dark:bg-purple-900/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
         
         <Container className="relative z-10">
-          <div className="mb-8 sm:mb-14">
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-4 sm:mb-6 gap-4">
+          <div className="mb-6 sm:mb-10">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-4 sm:mb-5 gap-4">
               <div>
                 <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 bg-gradient-to-r from-purple-100 to-violet-100 dark:from-purple-900/30 dark:to-violet-900/30 rounded-full mb-3 sm:mb-5">
                   <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-600 dark:text-purple-400" />
@@ -696,13 +653,13 @@ export default async function HomePage() {
       </section>
 
       {/* Galeri Section - Premium Design */}
-      <section className="bg-cream dark:bg-slate-800/50 py-16 sm:py-20 md:py-28 relative overflow-hidden">
+      <section className="bg-cream dark:bg-slate-800/50 py-12 sm:py-14 md:py-18 relative overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 hero-pattern opacity-20" />
         
         <Container className="relative z-10">
-          <div className="text-center mb-8 sm:mb-14">
-            <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 rounded-full mb-3 sm:mb-5">
+          <div className="text-center mb-6 sm:mb-10">
+            <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 rounded-full mb-3 sm:mb-4">
               <Camera className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-600 dark:text-green-400" />
               <span className="text-xs sm:text-sm font-semibold text-green-700 dark:text-green-400 tracking-wide">
                 Dokumentasi
@@ -779,7 +736,7 @@ export default async function HomePage() {
             </div>
           )}
 
-          <div className="text-center mt-10 sm:mt-14">
+          <div className="text-center mt-8 sm:mt-10">
             <Button href="/galeri" variant="outline" size="lg" className="group px-5 sm:px-8 py-3 sm:py-4 text-sm sm:text-base hover:bg-green-50 hover:border-green-300 dark:hover:bg-green-900/20">
               <Camera className="w-4 h-4 sm:w-5 sm:h-5" />
               Lihat Galeri Lengkap

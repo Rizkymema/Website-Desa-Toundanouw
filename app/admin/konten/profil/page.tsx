@@ -41,10 +41,6 @@ export default function ProfilDesaPage() {
     deskripsi: "",
     visi: "",
     misi: "",
-    sejarah: "",
-    geografis: "",
-    statistik_penduduk: "",
-    luas_wilayah: "",
     alamat: "",
     telepon: "",
     email: "",
@@ -86,10 +82,6 @@ export default function ProfilDesaPage() {
           deskripsi: profilRes.data.deskripsi || "",
           visi: profilRes.data.visi || "",
           misi: profilRes.data.misi || "",
-          sejarah: profilRes.data.sejarah || "",
-          geografis: profilRes.data.geografis || "",
-          statistik_penduduk: profilRes.data.statistik_penduduk?.toString() || "",
-          luas_wilayah: profilRes.data.luas_wilayah || "",
           alamat: profilRes.data.alamat || "",
           telepon: profilRes.data.telepon || "",
           email: profilRes.data.email || "",
@@ -117,12 +109,7 @@ export default function ProfilDesaPage() {
       setIsSaving(true);
       setError(null);
 
-      // Convert statistik_penduduk to number before sending
-      const updateData = {
-        ...profilForm,
-        statistik_penduduk: profilForm.statistik_penduduk ? parseInt(profilForm.statistik_penduduk, 10) : null,
-      };
-      await updateProfilDesa(updateData);
+      await updateProfilDesa(profilForm);
       
       setSuccessMessage("Profil desa berhasil disimpan!");
       setTimeout(() => setSuccessMessage(null), 3000);
@@ -325,35 +312,6 @@ export default function ProfilDesaPage() {
         />
       </FormSection>
 
-      {/* Statistik & Geografis */}
-      <FormSection
-        title="Statistik & Geografis"
-        description="Data statistik dan kondisi geografis desa"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <Input
-            label="Jumlah Penduduk"
-            type="number"
-            value={profilForm.statistik_penduduk}
-            onChange={(e) => setProfilForm({ ...profilForm, statistik_penduduk: e.target.value })}
-            helperText="Jumlah penduduk dalam jiwa"
-          />
-          <Input
-            label="Luas Wilayah"
-            value={profilForm.luas_wilayah}
-            onChange={(e) => setProfilForm({ ...profilForm, luas_wilayah: e.target.value })}
-            helperText="Contoh: 12,5 km²"
-          />
-        </div>
-        <Textarea
-          label="Kondisi Geografis"
-          rows={4}
-          value={profilForm.geografis}
-          onChange={(e) => setProfilForm({ ...profilForm, geografis: e.target.value })}
-          helperText="Deskripsikan kondisi geografis, batas wilayah, topografi, dll"
-        />
-      </FormSection>
-
       {/* Kontak */}
       <FormSection
         title="Informasi Kontak"
@@ -403,20 +361,6 @@ export default function ProfilDesaPage() {
           value={profilForm.misi}
           onChange={(e) => setProfilForm({ ...profilForm, misi: e.target.value })}
           helperText="Tuliskan misi dalam bentuk poin-poin"
-        />
-      </FormSection>
-
-      {/* Sejarah Desa */}
-      <FormSection
-        title="Sejarah Desa"
-        description="Sejarah singkat tentang desa"
-      >
-        <Textarea
-          label="Sejarah"
-          rows={8}
-          value={profilForm.sejarah}
-          onChange={(e) => setProfilForm({ ...profilForm, sejarah: e.target.value })}
-          helperText="Tuliskan sejarah desa secara ringkas dan informatif"
         />
       </FormSection>
 

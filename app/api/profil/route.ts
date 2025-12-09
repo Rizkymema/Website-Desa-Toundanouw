@@ -63,10 +63,6 @@ export async function PATCH(request: NextRequest) {
       deskripsi,
       visi,
       misi,
-      sejarah,
-      geografis,
-      statistik_penduduk,
-      luas_wilayah,
       alamat,
       telepon,
       email,
@@ -86,10 +82,6 @@ export async function PATCH(request: NextRequest) {
     if (deskripsi) updateData.deskripsi = deskripsi;
     if (visi) updateData.visi = visi;
     if (misi) updateData.misi = misi;
-    if (sejarah) updateData.sejarah = sejarah;
-    if (geografis) updateData.geografis = geografis;
-    if (statistik_penduduk) updateData.statistik_penduduk = statistik_penduduk;
-    if (luas_wilayah) updateData.luas_wilayah = luas_wilayah;
     if (alamat) updateData.alamat = alamat;
     if (telepon) updateData.telepon = telepon;
     if (email) updateData.email = email;

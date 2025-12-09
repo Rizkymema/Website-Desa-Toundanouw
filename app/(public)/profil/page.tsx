@@ -163,7 +163,6 @@ export default async function ProfilPage() {
   const deskripsi = profil?.deskripsi || "";
   const visi = profil?.visi || "Terwujudnya Desa Toundanouw yang maju, mandiri, dan sejahtera berlandaskan semangat gotong royong dan kearifan lokal.";
   const misiList = parseMisi(profil?.misi || null);
-  const sejarah = profil?.sejarah || "";
   const statistikPenduduk = profil?.statistik_penduduk || 1500;
   const luasWilayah = profil?.luas_wilayah || "12,5";
 
@@ -288,97 +287,6 @@ export default async function ProfilPage() {
         </Container>
       </section>
 
-      {/* Sejarah Desa - Ringkasan */}
-      {sejarah && (
-        <section id="sejarah" className="py-16 sm:py-20 bg-white dark:bg-slate-900 relative overflow-hidden scroll-mt-20">
-          {/* Decorative Elements */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-50/50 dark:bg-orange-900/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-50/50 dark:bg-amber-900/10 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
-          
-          <Container className="relative">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-              {/* Left - Content */}
-              <div className="animate-fadeInUp">
-                <div className="inline-flex items-center gap-2 text-orange-600 dark:text-orange-400 mb-4 px-4 py-2 rounded-full bg-orange-50 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-700">
-                  <BookOpen className="w-5 h-5" />
-                  <span className="text-sm font-semibold uppercase tracking-wide">
-                    Sejarah Singkat
-                  </span>
-                </div>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                  Sejarah {namaDesa}
-                </h2>
-                <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  Perjalanan panjang terbentuknya desa yang kita cintai
-                </p>
-
-                {/* Sejarah Text - Truncated */}
-                <div className="bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-slate-800 dark:via-slate-800 dark:to-slate-800 rounded-2xl p-6 border border-orange-100 dark:border-slate-700 shadow-lg mb-6">
-                  <div className="text-gray-700 dark:text-gray-300 leading-relaxed text-base">
-                    {sejarah.length > 400 
-                      ? `${sejarah.substring(0, 400)}...` 
-                      : sejarah
-                    }
-                  </div>
-                </div>
-
-                {/* CTA Button */}
-                <Link
-                  href="/jelajahi/sejarah"
-                  className="group inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/30 hover:-translate-y-1"
-                >
-                  <History className="w-5 h-5" />
-                  Lihat Sejarah Lengkap
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-
-              {/* Right - Feature Cards */}
-              <div className="space-y-4 animate-fadeInUp" style={{ animationDelay: "0.1s" }}>
-                {/* Timeline Card */}
-                <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-gray-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/30 dark:to-amber-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Calendar className="w-6 h-6 text-orange-600 dark:text-orange-400" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900 dark:text-white">Linimasa Sejarah</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Peristiwa penting dari masa ke masa</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Leaders Card */}
-                <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-gray-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Users className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900 dark:text-white">Kepala Desa</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Daftar pemimpin dari masa ke masa</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Highlights Card */}
-                <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-gray-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <History className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900 dark:text-white">Momen Penting</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Highlight peristiwa bersejarah</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Container>
-        </section>
-      )}
-
       {/* Visi & Misi */}
       <section className="py-16 sm:py-20 bg-cream dark:bg-slate-800/50 relative overflow-hidden">
         {/* Decorative Pattern */}
@@ -408,9 +316,11 @@ export default async function ProfilPage() {
                   Visi Desa
                 </h3>
               </div>
-              <blockquote className="text-lg text-gray-700 dark:text-gray-300 italic border-l-4 border-gradient-to-b from-orange-500 to-yellow-500 pl-5 py-2 bg-gradient-to-r from-orange-50 to-transparent dark:from-orange-900/20 dark:to-transparent rounded-r-lg">
-                &ldquo;{visi}&rdquo;
-              </blockquote>
+              <div className="bg-gradient-to-r from-orange-50 to-transparent dark:from-orange-900/20 dark:to-transparent rounded-r-lg border-l-4 border-gradient-to-b from-orange-500 to-yellow-500 pl-5 py-4">
+                <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 italic leading-relaxed">
+                  &ldquo;{visi}&rdquo;
+                </p>
+              </div>
             </div>
 
             {/* Misi */}
@@ -423,16 +333,16 @@ export default async function ProfilPage() {
                   Misi Desa
                 </h3>
               </div>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {misiList.map((misi, index) => (
                   <li
                     key={index}
-                    className="flex items-start gap-3 text-gray-700 dark:text-gray-300 group/item hover:bg-orange-50 dark:hover:bg-orange-900/10 p-2 rounded-lg transition-colors"
+                    className="flex items-start gap-3 text-gray-700 dark:text-gray-300 group/item hover:bg-orange-50 dark:hover:bg-orange-900/10 p-3 rounded-lg transition-colors"
                   >
-                    <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 text-white text-sm font-bold flex-shrink-0 mt-0.5 shadow-sm">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 text-white text-sm font-bold flex-shrink-0 mt-0.5 shadow-sm">
                       {index + 1}
                     </span>
-                    <span className="leading-relaxed">{misi}</span>
+                    <span className="leading-relaxed text-sm sm:text-base">{misi}</span>
                   </li>
                 ))}
               </ul>
