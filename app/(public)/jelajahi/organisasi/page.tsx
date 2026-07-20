@@ -399,7 +399,7 @@ export default async function OrganisasiPage() {
               </div>
               <div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Email</p>
-                <p className="font-semibold text-gray-900 dark:text-white">desa.toundanouw@gmail.com</p>
+                <p className="font-semibold text-gray-900 dark:text-white">desatoundanouw@gmail.com</p>
               </div>
             </div>
           </div>

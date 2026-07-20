@@ -208,8 +208,8 @@ export default async function HomePage() {
   ]);
 
   // Get contact info from settings or profil
-  const whatsapp = settings['whatsapp'] || profil?.telepon || '+62 812-3456-7890';
-  const email = settings['email'] || profil?.email || 'desa@toundanouw.id';
+  const whatsapp = settings['whatsapp'] || profil?.telepon || '085825162311';
+  const email = settings['email'] || profil?.email || 'desatoundanouw@gmail.com';
   const alamat = profil?.alamat || 'Desa Toundanouw, Kec. Touluaan';
 
   return (
@@ -309,9 +309,9 @@ export default async function HomePage() {
               </span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-5 tracking-tight">
-              Profil Desa{' '}
+              Profil{' '}
               <span className="text-gradient-primary">
-                {profil?.nama_desa || 'Toundanouw'}
+                {profil?.nama_desa || 'Desa Toundanouw'}
               </span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0">
@@ -340,9 +340,7 @@ export default async function HomePage() {
               {
                 icon: Mountain,
                 title: "Potensi Alam",
-                desc: profil?.luas_wilayah 
-                  ? `Dengan luas wilayah ${profil.luas_wilayah}, desa ini dikelilingi alam yang indah dengan potensi pertanian, perkebunan, dan wisata alam yang menjanjikan.`
-                  : 'Desa ini dikelilingi alam yang indah dengan potensi pertanian, perkebunan, dan wisata alam yang menjanjikan.',
+                desc: 'Dengan wilayah yang luas dan subur, desa ini dikelilingi alam yang indah dengan potensi pertanian, perkebunan, dan wisata alam yang menjanjikan.',
                 gradient: "from-green-500 to-emerald-500",
                 iconBg: "from-green-100 to-emerald-200",
               },
@@ -639,7 +637,9 @@ export default async function HomePage() {
           ) : (
             <div className="text-center py-16 bg-gray-50 dark:bg-slate-800 rounded-3xl border border-gray-100 dark:border-slate-700">
               <FileText className="w-20 h-20 text-gray-200 mx-auto mb-5" />
-              <p className="text-lg text-gray-500 dark:text-gray-400">Belum ada template surat tersedia</p>
+              <p className="text-lg text-gray-500 dark:text-gray-400">
+                Layanan E-Surat Digital: Template dokumen sedang dalam proses standardisasi dan akan segera hadir untuk warga.
+              </p>
             </div>
           )}
 
@@ -669,7 +669,7 @@ export default async function HomePage() {
               Galeri Desa
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0">
-              Kumpulan foto kegiatan dan keindahan Desa {profil?.nama_desa || 'Toundanouw'}
+              Kumpulan foto kegiatan dan keindahan {profil?.nama_desa || 'Desa Toundanouw'}
             </p>
           </div>
 

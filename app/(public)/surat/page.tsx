@@ -428,7 +428,7 @@ export default function SuratPage() {
                       ? `Tidak ada surat yang cocok dengan pencarian "${searchQuery}"`
                       : selectedCategory !== "Semua"
                       ? `Tidak ada surat dalam kategori "${categoryLabels[selectedCategory] || selectedCategory}"`
-                      : "Belum ada template surat yang tersedia"}
+                      : "Layanan E-Surat Digital: Template dokumen sedang dalam proses standardisasi dan akan segera hadir untuk warga."}
                   </p>
                   {(searchQuery || selectedCategory !== "Semua") && (
                     <Button

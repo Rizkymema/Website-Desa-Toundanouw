@@ -127,8 +127,8 @@ export function Footer() {
             <ul className="space-y-3 sm:space-y-5">
               {[
                 { icon: MapPin, text: "Desa Toundanouw, Kec. Touluaan, Kab. Minahasa Tenggara, Sulawesi Utara" },
-                { icon: Phone, text: "+62 812-3456-7890" },
-                { icon: Mail, text: "desa.toundanouw@gmail.com" },
+                { icon: Phone, text: "085825162311" },
+                { icon: Mail, text: "desatoundanouw@gmail.com" },
                 { icon: Clock, text: "Senin - Jumat: 08:00 - 15:00 WITA" },
               ].map((item, index) => (
                 <li key={index} className="group flex items-start gap-3 sm:gap-4 text-xs sm:text-sm text-gray-400">

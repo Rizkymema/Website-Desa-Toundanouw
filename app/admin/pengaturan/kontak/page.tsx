@@ -43,8 +43,8 @@ const fieldToKeyMap: Record<string, string> = {
 // Default values
 const defaultFormData = {
   telepon: "(0431) 123-456",
-  whatsapp: "081234567890",
-  email: "desa.toundanouw@gmail.com",
+  whatsapp: "085825162311",
+  email: "desatoundanouw@gmail.com",
   alamat: "Jl. Utama Desa No. 1",
   desa: "Toundanouw",
   kecamatan: "Touluaan",
